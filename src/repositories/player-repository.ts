@@ -244,10 +244,17 @@ const database: playerModel[] = [
 ];
 export const findAllPlayer = async(): Promise<playerModel[]> => {
     return database;
-}
+};
 
 export const findPlayerById = async (
     id:number
 ):Promise<playerModel | undefined> => {
     return database.find(player => player.id === id);
+};
+
+export const insertPlayer = async(player: playerModel) => {
+    const id = database[database.length - 1].id + 1;
+    player.id = id;
+    database.push(player);
+    return player;
 }
